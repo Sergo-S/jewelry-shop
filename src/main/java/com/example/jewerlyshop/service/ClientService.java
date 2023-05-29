@@ -1,5 +1,6 @@
 package com.example.jewerlyshop.service;
 
+import com.example.jewerlyshop.common.exceptions.BadRequestException;
 import com.example.jewerlyshop.entity.Client;
 import com.example.jewerlyshop.repository.ClientRepository;
 import com.example.jewerlyshop.repository.SaleRepository;
@@ -39,12 +40,12 @@ public class ClientService {
 
     public Client getClientById(Long id) {
         return clientRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("The client not found by Id " + id));
+                .orElseThrow(() -> new BadRequestException("The client not found by Id " + id));
     }
 
     public Client getClientByName(Client client) {
         return clientRepository.findByName(client.getName())
-                .orElseThrow(() -> new RuntimeException("The client not found by name " + client.getName()));
+                .orElseThrow(() -> new BadRequestException("The client not found by name " + client.getName()));
     }
 
     public void deleteById(Long id) {

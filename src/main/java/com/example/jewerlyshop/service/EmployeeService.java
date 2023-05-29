@@ -1,5 +1,6 @@
 package com.example.jewerlyshop.service;
 
+import com.example.jewerlyshop.common.exceptions.BadRequestException;
 import com.example.jewerlyshop.entity.Client;
 import com.example.jewerlyshop.entity.Employee;
 import com.example.jewerlyshop.repository.EmployeeRepository;
@@ -18,9 +19,6 @@ public class EmployeeService {
     private final SaleRepository saleRepository;
 
     public Employee create (Employee employee){
-//        if(Period.between(employee.getBirthDate(),LocalDate.now()).getYears() < 18){
-//
-//        }
         employee.setHireDate(LocalDate.now());
         return employeeRepository.save(employee);
     }
@@ -41,7 +39,7 @@ public class EmployeeService {
 
     public Employee getEmployeeById(Long id) {
         return employeeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("The employee not found by Id " + id));
+                .orElseThrow(() -> new BadRequestException("The employee not found by Id " + id));
     }
 
     public void deleteById(Long id) {

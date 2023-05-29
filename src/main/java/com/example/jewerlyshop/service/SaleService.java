@@ -1,6 +1,7 @@
 package com.example.jewerlyshop.service;
 
 
+import com.example.jewerlyshop.common.exceptions.BadRequestException;
 import com.example.jewerlyshop.entity.Kind;
 import com.example.jewerlyshop.entity.Product;
 import com.example.jewerlyshop.entity.Sale;
@@ -40,7 +41,7 @@ public class SaleService {
 
     public Sale getSaleById(Long id) {
         return saleRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("The sale not found by Id " + id));
+                .orElseThrow(() -> new BadRequestException("The sale not found by Id " + id));
     }
 
     public void deleteById(Long id) {
