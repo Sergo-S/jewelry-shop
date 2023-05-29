@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,13 +34,13 @@ public class SaleController {
     }
 
     @PostMapping("/create")
-    public SaleResponse create(@RequestBody SaleCreateRequest saleDto) {
+    public SaleResponse create(@Valid @RequestBody SaleCreateRequest saleDto) {
         return saleMapper.toDto(saleService.create(saleMapper.fromDto(saleDto),
                 saleDto.getClientId(),saleDto.getProductId(),saleDto.getEmployeeId()));
     }
 
     @PutMapping("/update/{id}")
-    public SaleResponse update(@RequestBody SaleUpdateRequest saleDto,@PathVariable Long id){
+    public SaleResponse update(@Valid @RequestBody SaleUpdateRequest saleDto,@PathVariable Long id){
         return saleMapper.toDto((saleService.update(saleMapper.fromDto(saleDto),id)));
     }
 

@@ -14,6 +14,7 @@ import com.example.jewerlyshop.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -35,12 +36,12 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public ProductResponse create(@RequestBody ProductCreateRequest productDto) {
+    public ProductResponse create(@Valid @RequestBody ProductCreateRequest productDto) {
         return productMapper.toDto(productService.create(productMapper.fromDto(productDto),productDto.getKindId()));
     }
 
     @PutMapping("/update/{id}")
-    public ProductResponse update(@RequestBody ProductUpdateRequest productDto,@PathVariable Long id){
+    public ProductResponse update(@Valid @RequestBody ProductUpdateRequest productDto,@PathVariable Long id){
         return productMapper.toDto((productService.update(productMapper.fromDto(productDto),id)));
     }
 

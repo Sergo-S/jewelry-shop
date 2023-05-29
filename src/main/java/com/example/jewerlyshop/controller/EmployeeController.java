@@ -12,6 +12,7 @@ import com.example.jewerlyshop.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,12 +33,12 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
-    public EmployeeResponse create(@RequestBody EmployeeCreateRequest employeeDto) {
+    public EmployeeResponse create(@Valid @RequestBody EmployeeCreateRequest employeeDto) {
         return employeeMapper.toDto(employeeService.create(employeeMapper.fromDto(employeeDto)));
     }
 
     @PutMapping("/update/{id}")
-    public EmployeeResponse update(@RequestBody EmployeeUpdateRequest employeeDto, @PathVariable Long id){
+    public EmployeeResponse update(@Valid @RequestBody EmployeeUpdateRequest employeeDto, @PathVariable Long id){
         return employeeMapper.toDto((employeeService.update(employeeMapper.fromDto(employeeDto),id)));
     }
 

@@ -1,10 +1,11 @@
 package com.example.jewerlyshop.dto.client.request;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 @Data
 public class ClientFindByNameRequest {
 
-        @NotNull
+        @NotBlank(message = "The name is required.")
         private String name;
 }

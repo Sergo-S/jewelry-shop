@@ -12,6 +12,7 @@ import com.example.jewerlyshop.service.KindService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,12 +33,12 @@ public class KindController {
     }
 
     @PostMapping("/create")
-    public KindResponse create(@RequestBody KindCreateRequest kindDto) {
+    public KindResponse create(@Valid @RequestBody KindCreateRequest kindDto) {
         return kindMapper.toDto(kindService.create(kindMapper.fromDto(kindDto)));
     }
 
     @PutMapping("/update/{id}")
-    public KindResponse update(@RequestBody KindUpdateRequest kindDto,@PathVariable Long id){
+    public KindResponse update(@Valid @RequestBody KindUpdateRequest kindDto,@PathVariable Long id){
         return kindMapper.toDto((kindService.update(kindMapper.fromDto(kindDto),id)));
     }
 

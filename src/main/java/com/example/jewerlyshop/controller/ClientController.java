@@ -9,6 +9,7 @@ import com.example.jewerlyshop.service.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,17 +30,17 @@ public class ClientController {
     }
 
     @GetMapping("/name")
-    public ClientResponse getByName(@RequestBody ClientFindByNameRequest clientDto){
+    public ClientResponse getByName(@Valid @RequestBody ClientFindByNameRequest clientDto){
         return clientMapper.toDto(clientService.getClientByName(clientMapper.fromDto(clientDto)));
     }
 
     @PostMapping("/create")
-    public ClientResponse create(@RequestBody ClientCreateRequest clientDto) {
+    public ClientResponse create(@Valid @RequestBody ClientCreateRequest clientDto) {
         return clientMapper.toDto(clientService.create(clientMapper.fromDto(clientDto)));
     }
 
     @PutMapping("/update/{id}")
-    public ClientResponse update(@RequestBody ClientUpdateRequest clientDto, @PathVariable Long id){
+    public ClientResponse update(@Valid @RequestBody ClientUpdateRequest clientDto, @PathVariable Long id){
         return clientMapper.toDto((clientService.update(clientMapper.fromDto(clientDto),id)));
     }
 

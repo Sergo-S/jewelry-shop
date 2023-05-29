@@ -1,6 +1,6 @@
 package com.example.jewerlyshop.dto.sale.request;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -8,15 +8,15 @@ import java.time.LocalDate;
 @Data
 public class SaleCreateRequest {
 
-    @NotNull
+    @NotNull(message = "The clientId is required.")
     private Long clientId;
 
-    @NotNull
+    @NotNull(message = "The productId is required.")
     private Long productId;
 
-    @NotNull
+    @NotNull(message = "The employeeId is required.")
     private Long employeeId;
 
-    @NotNull
+    @NotNull(message = "The revenue is required.")
     private Double revenue;
 }

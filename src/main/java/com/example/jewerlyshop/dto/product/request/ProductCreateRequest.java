@@ -1,7 +1,9 @@
 package com.example.jewerlyshop.dto.product.request;
 
 import com.example.jewerlyshop.entity.Kind;
-import com.sun.istack.NotNull;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 import javax.persistence.CascadeType;
@@ -11,17 +13,17 @@ import javax.persistence.OneToOne;
 @Data
 public class ProductCreateRequest {
 
-    @NotNull
+    @NotBlank(message = "The name is required.")
     private String name;
 
-    @NotNull
+    @NotNull(message = "The price is required.")
     private Double price;
 
 
-    @NotNull
+    @NotNull(message = "The quantity is required.")
     private Short quantity;
 
 
-    @NotNull
+    @NotNull(message = "The kindId is required.")
     private Long kindId;
 }

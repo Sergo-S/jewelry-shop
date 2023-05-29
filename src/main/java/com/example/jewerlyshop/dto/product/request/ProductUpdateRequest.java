@@ -1,17 +1,18 @@
 package com.example.jewerlyshop.dto.product.request;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class ProductUpdateRequest {
 
-    @NotNull
+    @NotBlank(message = "The name is required.")
     private String name;
 
-    @NotNull
+    @NotNull(message = "The price is required.")
     private Double price;
 
-    @NotNull
+    @NotNull(message = "The quantity is required.")
     private Short quantity;
 }
